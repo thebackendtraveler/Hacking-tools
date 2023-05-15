@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-# Import scapy
+
 import scapy.all as scapy
-# We need to create regular expressions to ensure that the input is correctly formatted.
-import re
+import re #the re module is for regular expressions
 from termcolor import cprint
 
-# Basic user interface header
+# Basic user interface header with the name of the tool, and a color guide
 cprint(
 r""" ____________________________________________________________________________________________________________________________ 
 |  _____    ______   _____   _____   _____   _____   ___     _      ___        ___   ______   _____   _____   ____   _____   |
@@ -28,7 +27,8 @@ cprint(F'\n* Green -> No error.                          *', 'green')
 # Regular Expression Pattern to recognise IPv4 addresses.
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 
-def mapper(ip_add_range_entered):
+def network_mapper ():
+    print('Hey, this works')
     try:
         ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         if ip_add_range_pattern.search(ip_add_range_entered):
