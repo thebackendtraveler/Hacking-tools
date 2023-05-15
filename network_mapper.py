@@ -31,7 +31,7 @@ while True:
         print(f"{ip_add_range_entered} is a valid ip address range")
         break
 
-
+#192.168.142.0
 # Try ARPing the ip address range supplied by the user. 
 # The arping() method in scapy creates a pakcet with an ARP message 
 # and sends it to the broadcast mac address ff:ff:ff:ff:ff:ff.
