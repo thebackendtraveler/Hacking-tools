@@ -2,6 +2,8 @@ import scapy.all as scapy
 import re 
 from termcolor import cprint
 import nmap
+from netaddr import *
+from socket import *
 
 # The re mosule is used for creating regular expressions with scanners for example
 # cprint is a function from the termcolor module, that allows us to change the color of the text in the terminal
@@ -48,8 +50,8 @@ except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
     
-# nmScan.scan = input("\n Please enter an ip address to scan: ")
-# nmScan.scan = input("\n Please enter a port range to scan: " )
+nmScan.scan = input("\n Please enter an ip address to scan: ")
+portStart, portEnd = raw_input ("\n Please enter a port-port: " ).split("-")
 
 nmScan.scan('192.142.132', '21-443')
 
