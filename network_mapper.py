@@ -1,10 +1,12 @@
 import scapy.all as scapy
 import re 
 from termcolor import cprint
+import nmap
 
 # The re mosule is used for creating regular expressions with scanners for example
 # cprint is a function from the termcolor module, that allows us to change the color of the text in the terminal
 # We use the scapy module for packet manipulation, for example in a network scanner
+# We import the nmap module to be able to scan ports on a network
 
 # The user interface header with the name of the tool, and a color guide
 cprint(
@@ -28,6 +30,7 @@ cprint(F'\n* Green -> No error.                          *', 'green')
 
 # Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
+nmScan = nmap.PortScanner()
 
 # Here is a try and except statement. We use them to help the program except errors and continue gracefully without crashing
 try:
@@ -45,3 +48,17 @@ except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
     
+nmScan.scan = input("\n Please enter an ip address to scan: ")
+nmScan.scan = input("\n Please enter a port range to scan: " )
+
+for host in nmScan.all_hosts():
+     print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+     print('State : %s' % nmScan[host].state())
+     for proto in nmScan[host].all_protocols():
+         print('----------')
+         print('Protocol : %s' % proto)
+ 
+         lport = nmScan[host][proto].keys()
+         lport.sort()
+         for port in lport:
+             print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
