@@ -48,8 +48,10 @@ except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
     
-nmScan.scan = input("\n Please enter an ip address to scan: ")
-nmScan.scan = input("\n Please enter a port range to scan: " )
+# nmScan.scan = input("\n Please enter an ip address to scan: ")
+# nmScan.scan = input("\n Please enter a port range to scan: " )
+
+nmScan.scan('127.0.0.1', '21-443')
 
 for host in nmScan.all_hosts():
      print('Host : %s (%s)' % (host, nmScan[host].hostname()))
