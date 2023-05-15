@@ -40,6 +40,7 @@ try:
     if ip_add_range_pattern.search(ip_add_range_entered):
         cprint(f"{ip_add_range_entered} is a valid ip address range", 'green') # This line will display when the user has provided a correct ip address range
         arp_result = scapy.arping(ip_add_range_entered) #This line will display the result of the scan to the user
+        cprint(arp_result, 'green')
 except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
