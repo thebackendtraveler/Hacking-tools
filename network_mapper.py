@@ -14,27 +14,30 @@ r""" ___________________________________________________________________________
 | | |_| |  | |__| | | |  _  | |  _  | | | | | | | | | | \ \ | | -> | | \ \  / / | | | |__| | |  ___/ |  ___/ |  __| | |_| |  | 
 | |  __ \  |  __  | | |_| | | |_| | | |_| | | |_| | | |  \ \| |    | |  \ \/ /  | | |  __  | | |     | |     | |__  |  __ \  |
 | |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|   \__/   |_| |_|  |_| |_|     |_|     |____| |_|  \_\ |
-|____________________________________________________________________________________________________________________________| """, 'red')
-cprint(f'\n************************************************', 'green')
-cprint(f'\n* Copyright of Andrea Dybendal, 2023           *', 'green')
-cprint(f'\n* https://www.thebackendtraveler.com           *', 'green')
-cprint(f'\n* https://www.youtube.com/thebackendtraveler   *', 'green')
-cprint(f'\n************************************************', 'green')
+|____________________________________________________________________________________________________________________________| """, 'blue')
+cprint(f'\n************************************************', 'blue')
+cprint(f'\n* Copyright of Andrea Dybendal, 2023           *', 'blue')
+cprint(f'\n* https://www.thebackendtraveler.com           *', 'blue')
+cprint(f'\n* https://www.youtube.com/thebackendtraveler   *', 'blue')
+cprint(f'\n************************************************', 'blue')
+
+cprint(f'\n* Color guide:                                *', 'white')
+cprint(f'\n* Red -> There was an error.                  *', 'red')
+cprint(F'\n* Green -> No error.                          *', 'green')
 
 # Regular Expression Pattern to recognise IPv4 addresses.
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 
-# Get the address range to ARP
-while True:
+
+try:
     ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
     if ip_add_range_pattern.search(ip_add_range_entered):
-        print(f"{ip_add_range_entered} is a valid ip address range")
-        break
+        cprint(f"{ip_add_range_entered} is a valid ip address range", 'green')
+except:
+    cprint(f'\n* Something went wrong, please try again  *', 'red')
 
-#192.168.142.0
-# Try ARPing the ip address range supplied by the user. 
-# The arping() method in scapy creates a pakcet with an ARP message 
-# and sends it to the broadcast mac address ff:ff:ff:ff:ff:ff.
-# If a valid ip address range was supplied the program will return 
-# the list of all results.
-arp_result = scapy.arping(ip_add_range_entered)
+try:
+    arp_result = scapy.arping(ip_add_range_entered)
+    cprint(arp_result, 'green')
+except OSError as e:
+    cprint(f'\n* There was an error, please try again   *', 'red')
