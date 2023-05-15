@@ -27,8 +27,8 @@ cprint(F'\n* Green -> No error.                          *', 'green')
 # Regular Expression Pattern to recognise IPv4 addresses.
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 
-def network_mapper ():
-    print('Hey, this works')
+def network_mapper(ip_add_range_entered, arp_result) :
+
     try:
         ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         if ip_add_range_pattern.search(ip_add_range_entered):
@@ -39,5 +39,5 @@ def network_mapper ():
     try:
         arp_result = scapy.arping(ip_add_range_entered)
         cprint(arp_result, 'green')
-    except OSError as e:
+    except:
         cprint(f'\n* There was an error, please try again   *', 'red')
