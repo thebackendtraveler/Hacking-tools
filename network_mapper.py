@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
-
 import scapy.all as scapy
-import re #the re module is for regular expressions
+import re 
 from termcolor import cprint
 
-# Basic user interface header with the name of the tool, and a color guide
+# The re mosule is used for creating regular expressions with scanners for example
+# cprint is a function from the termcolor module, that allows us to change the color of the text in the terminal
+# We use the scapy module for packet manipulation, for example in a network scanner
+
+# The user interface header with the name of the tool, and a color guide
 cprint(
 r""" ____________________________________________________________________________________________________________________________ 
 |  _____    ______   _____   _____   _____   _____   ___     _      ___        ___   ______   _____   _____   ____   _____   |
@@ -24,16 +26,20 @@ cprint(f'\n* Color guide:                                *', 'white')
 cprint(f'\n* Red -> There was an error.                  *', 'red')
 cprint(F'\n* Green -> No error.                          *', 'green')
 
-# Regular Expression Pattern to recognise IPv4 addresses.
+# Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 
+# Here is a try and except statement. We use them to help the program except errors and continue gracefully without crashing
 try:
+    # Asking the user for a subnet to scan
     ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         
+    # This is an if statement that will search for the ip address range submitted by the user
+    # If it existis, the scan will begin
+    # If it does not exist, the program will display that soemthing went wrong, and then close
     if ip_add_range_pattern.search(ip_add_range_entered):
-        cprint(f"{ip_add_range_entered} is a valid ip address range", 'green')
-        arp_result = scapy.arping(ip_add_range_entered)
-        cprint(arp_result, 'green')
+        cprint(f"{ip_add_range_entered} is a valid ip address range", 'green') # This line will display when the user has provided a correct ip address range
+        arp_result = scapy.arping(ip_add_range_entered) #This line will display the result of the scan to the user
 except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
