@@ -51,7 +51,7 @@ except:
 # nmScan.scan = input("\n Please enter an ip address to scan: ")
 # nmScan.scan = input("\n Please enter a port range to scan: " )
 
-nmScan.scan('192.168.142.0', '21-443')
+nmScan.scan('127.0.0.1', '21-443')
 
 for host in nmScan.all_hosts():
      print('Host : %s (%s)' % (host, nmScan[host].hostname()))
