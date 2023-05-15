@@ -53,10 +53,11 @@ except:
 
 nmScan.scan('192.142.132', '21-443')
 
-for host in nmScan.all_hosts():
-     print('Host : %s (%s)' % (host, nmScan[host].hostname()))
-     print('State : %s' % nmScan[host].state())
-     for proto in nmScan[host].all_protocols():
+try:
+    for host in nmScan.all_hosts():
+        print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+        print('State : %s' % nmScan[host].state())
+        for proto in nmScan[host].all_protocols():
          print('----------')
          print('Protocol : %s' % proto)
  
@@ -64,3 +65,5 @@ for host in nmScan.all_hosts():
          lport.sort()
          for port in lport:
              print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+except:
+    cprint(f'\nThere was an error happening, please try again..')
