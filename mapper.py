@@ -41,9 +41,9 @@ try:
 except KeyboardInterrupt:
         cprint("\n Exiting :(", 'red')
         sys.exit()
-except:
-        cprint("\n Network is not responding :(", 'red')
-        sys.exit()
+#except:
+        #cprint("\n Network is not responding :(", 'red')
+        #sys.exit()
 
 
 #User interface
