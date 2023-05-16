@@ -49,20 +49,22 @@ if ip_add_range_pattern.search(ip_add_range_entered):
 #except:
     #cprint(f'\n* Something went wrong, please try again  *', 'red')
 
-nmScan = nmap.PortScanner()  
-nmScan.scan = ('192.168.142.132', '21-443')
+try:
+    nmScan = nmap.PortScanner()  
+    nmScan.scan = ('192.168.142.132', '21-443')
 
-cprint('\nStarting the NMAP scan....', 'green')
-# run a loop to print all the found result about the ports
-for host in nmScan.all_hosts():
-    cprint('Host : %s (%s)' % (host, nmScan[host].hostname()), 'red')
-    cprint('State : %s' % nmScan[host].state(), 'red')
-    for proto in nmScan[host].all_protocols():
-        cprint('----------', 'red')
-        cprint('Protocol : %s' % proto, 'red')
-        cprint('Hello', 'blue')
-        lport = nmScan[host][proto].keys()
-        for port in lport:
-            cprint ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']),'red')
-cprint('\nThe NMAP scan has completed', 'green')
-
+    cprint('\nStarting the NMAP scan....', 'green')
+    # run a loop to print all the found result about the ports
+    for host in nmScan.all_hosts():
+        cprint('Host : %s (%s)' % (host, nmScan[host].hostname()), 'red')
+        cprint('State : %s' % nmScan[host].state(), 'red')
+        for proto in nmScan[host].all_protocols():
+            cprint('----------', 'red')
+            cprint('Protocol : %s' % proto, 'red')
+        
+            lport = nmScan[host][proto].keys()
+            for port in lport:
+                cprint ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']),'red')
+                cprint('\nThe NMAP scan has completed', 'green')
+except:
+    cprint('\nThere was an error,please try again....')
