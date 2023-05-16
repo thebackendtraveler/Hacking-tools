@@ -35,7 +35,7 @@ cprint(F'\n* Green -> No error.                          *', 'green')
 #try:
     # Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
 ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
-nmScan = nmap.PortScanner()     
+   
     # Asking the user for a subnet to scan
 ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         
@@ -49,8 +49,23 @@ if ip_add_range_pattern.search(ip_add_range_entered):
 #except:
     #cprint(f'\n* Something went wrong, please try again  *', 'red')
 
+nmScan = nmap.PortScanner()  
+nmScan.scan = ('192.168.142.132', '21-443')
 
-nmScan.scan = ('192.168.142.132', '21 - 443')
+# run a loop to print all the found result about the ports
+for host in nmScan.all_hosts():
+     print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+     print('State : %s' % nmScan[host].state())
+     for proto in nmScan[host].all_protocols():
+         print('----------')
+         print('Protocol : %s' % proto)
+ 
+         lport = nmScan[host][proto].keys()
+         lport.sort()
+         for port in lport:
+             print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+
+
 
 #try:
 for host in nmScan.all_hosts():
