@@ -17,7 +17,7 @@ print("_" * 50)
 try:
 
     #Scan every port on the target ip
-    for port in range(1,65535):
+    for port in range(1,65536):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(0.5)
 
