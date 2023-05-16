@@ -26,7 +26,7 @@ try:
         #Return open port
         result = s.connect_ex((target, port))
         if result == 0:
-            print("[*] Port {} is open".format(port))
+            cprint("[*] Port {} is open".format(port), 'green')
         s.close()
 except KeyboardInterrupt: 
         cprint("\n Exiting :(", 'red')
