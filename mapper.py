@@ -85,7 +85,11 @@ except socket.error:
         sys.exit()
 
 
-#this works so nice, but I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
+#this works so nice, 
+#but I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
+#when the user selects ip address one, this should be scanned for open ports.
+#the options should be displayed to the user
+#make the menu east to navigate and understand
 #great work man
 #the error handlings seems to work nice too
 #and I love the keyboard interrupt exception
