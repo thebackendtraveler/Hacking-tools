@@ -18,32 +18,32 @@ r""" ___________________________________________________________________________
 | |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|   \__/   |_| |_|  |_| |_|     |_|     |____| |_|  \_\ |
 |____________________________________________________________________________________________________________________________| """, 'blue')
 
-subnet = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
-subnet = input("Target subnet: " )
+subnet_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
+subnet_range_entered = input("\n Target subnet (ex 192.168.1.0/24): ")
 
 
 
 #Banner
 cprint("_" * 50, 'green')
-cprint("Scanning Subnet " + subnet, 'green')
+cprint("Scanning Subnet " + subnet_range_entered, 'green')
 cprint("Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 
 try:
     #Scan every host on the target subnet
-    if subnet.search(subnet):
-        cprint(f"{subnet} is a valid ip address range", 'green')
+    if subnet_range_pattern.search(subnet_range_entered):
+        cprint(f"{subnet_range_entered} is a valid ip address range", 'green')
 
         #Return ipaddresses from the subnet 
-        arp_result = scapy.arping(subnet) 
+        arp_result = scapy.arping(subnet_range_entered)
         cprint(arp_result, 'green')
 except KeyboardInterrupt:
         cprint("\n Exiting :(", 'red')
         sys.exit()
-#except:
-        #cprint("\n Network is not responding :(", 'red')
-        #sys.exit()
+except AttributeError:
+        cprint("\n Network is not responding :(", 'red')
+        sys.exit()
 
 
 #User interface
