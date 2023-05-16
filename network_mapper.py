@@ -55,15 +55,14 @@ nmScan.scan = ('192.168.142.132', '21-443')
 cprint('\nStarting the NMAP scan....', 'green')
 # run a loop to print all the found result about the ports
 for host in nmScan.all_hosts():
-    print('Host : %s (%s)' % (host, nmScan[host].hostname()))
-    print('State : %s' % nmScan[host].state())
+    cprint('Host : %s (%s)' % (host, nmScan[host].hostname()), 'red')
+    cprint('State : %s' % nmScan[host].state(), 'red')
     for proto in nmScan[host].all_protocols():
-        print('----------')
-        print('Protocol : %s' % proto)
+        cprint('----------'), 'red'
+        cprint('Protocol : %s' % proto, 'red')
  
         lport = nmScan[host][proto].keys()
         for port in lport:
-            print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
-
+            cprint ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']),'red')
 cprint('\nThe NMAP scan has completed', 'green')
 
