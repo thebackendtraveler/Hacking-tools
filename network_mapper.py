@@ -32,21 +32,21 @@ cprint(F'\n* Green -> No error.                          *', 'green')
 
 
 # Here is a try and except statement. We use them to help the program except errors and continue gracefully without crashing
-try:
+#try:
     # Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
-    ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
-    nmScan = nmap.PortScanner()     
+ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
+nmScan = nmap.PortScanner()     
     # Asking the user for a subnet to scan
-    ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
+ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         
     # This is an if statement that will search for the ip address range submitted by the user
     # If it existis, the scan will begin
     # If it does not exist, the program will display that soemthing went wrong, and then close
-    if ip_add_range_pattern.search(ip_add_range_entered):
-        cprint(f"{ip_add_range_entered} is a valid ip address range", 'green') # This line will display when the user has provided a correct ip address range
-        arp_result = scapy.arping(ip_add_range_entered) #This line will display the result of the scan to the user
-        cprint(arp_result, 'green')
-except:
+if ip_add_range_pattern.search(ip_add_range_entered):
+    cprint(f"{ip_add_range_entered} is a valid ip address range", 'green') # This line will display when the user has provided a correct ip address range
+    arp_result = scapy.arping(ip_add_range_entered) #This line will display the result of the scan to the user
+    cprint(arp_result, 'green')
+#except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
 ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
@@ -54,8 +54,8 @@ portStartEnd = 0-5000
 nmScan.scan = portStartEnd, ip_add_range_entered
 nmScan.scan = ('192.168.142.0', '0 - 65000')
 
-try:
-    for host in nmScan.all_hosts():
+#try:
+for host in nmScan.all_hosts():
         print('Host : %s (%s)' % (host, nmScan[host].hostname()))
         print('State : %s' % nmScan[host].state())
         for proto in nmScan[host].all_protocols():
@@ -65,5 +65,5 @@ try:
          lport = nmScan[host][proto].keys()
          for port in lport:
              print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
-except:
-    cprint(f'\nThere was an error happening, please try again..', 'red')
+#except:
+cprint(f'\nThere was an error happening, please try again..', 'red')
