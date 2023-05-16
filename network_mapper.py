@@ -52,6 +52,7 @@ except:
 ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
 portStartEnd = 0-5000
 nmScan.scan = portStartEnd, ip_add_range_entered
+nmScan.scan = ('192.168.142.0', '0 - 65000')
 
 try:
     for host in nmScan.all_hosts():
