@@ -83,3 +83,9 @@ except KeyboardInterrupt:
 except socket.error:
         cprint("\n Host is not responding :(", 'red')
         sys.exit()
+
+
+#this works so nice, but I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
+#great work man
+#the error handlings seems to work nice too
+#and I love the keyboard interrupt exception
