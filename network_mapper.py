@@ -50,7 +50,7 @@ if ip_add_range_pattern.search(ip_add_range_entered):
     #cprint(f'\n* Something went wrong, please try again  *', 'red')
 
 nmScan = nmap.PortScanner()  
-nmScan.scan = ('192.168.142.1', '21-443')
+nmScan.scan = ('192.168.142.132', '21-443')
 
 cprint('\nStarting the NMAP scan....', 'green')
 # run a loop to print all the found result about the ports
