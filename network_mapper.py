@@ -52,6 +52,7 @@ if ip_add_range_pattern.search(ip_add_range_entered):
 nmScan = nmap.PortScanner()  
 nmScan.scan = ('192.168.142.132', '21-443')
 
+cprint('\nStarting the NMAP scan....', 'green')
 # run a loop to print all the found result about the ports
 for host in nmScan.all_hosts():
      print('Host : %s (%s)' % (host, nmScan[host].hostname()))
@@ -64,7 +65,7 @@ for host in nmScan.all_hosts():
          for port in lport:
              print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
 
-
+cprint('\nThe NMAP scan has completed', 'green')
 
 #try:
 #for host in nmScan.all_hosts():
