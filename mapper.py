@@ -41,7 +41,7 @@ try:
 except KeyboardInterrupt:
         cprint("\n Exiting :(", 'red')
         sys.exit()
-except scapy.error:
+except:
         cprint("\n Network is not responding :(", 'red')
         sys.exit()
 
