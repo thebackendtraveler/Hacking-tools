@@ -3,17 +3,18 @@ import sys
 import socket
 from datetime import datetime
 import threading
+from termcolor import cprint
 
 ascii_banner = pyfiglet.figlet_format("RACCOON MAPPER")
-print(ascii_banner)
+cprint(ascii_banner, 'blue')
 
 target = input(str("target IP: "))
 
 #Banner
-print("_" * 50)
-print("Scanning Target: " + target)
-print("Scanning started at: " + str(datetime.now()))
-print("_" * 50)
+cprint("_" * 50, 'green')
+cprint("Scanning Target: " + target, 'green')
+cprint("Scanning started at: " + str(datetime.now()), 'green')
+cprint("_" * 50, 'green')
 
 try:
 
@@ -28,8 +29,8 @@ try:
             print("[*] Port {} is open".format(port))
         s.close()
 except KeyboardInterrupt: 
-        print("\n Exiting :(")
+        cprint("\n Exiting :(", 'red')
         sys.exit()
 except socket.error:
-        print("\n Host is not responding :(")
+        cprint("\n Host is not responding :(", 'red')
         sys.exit()
