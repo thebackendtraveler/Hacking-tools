@@ -2,10 +2,9 @@ import scapy.all as scapy
 import re 
 from termcolor import cprint
 import nmap
-from netaddr import *
-from socket import *
 
-# The re mosule is used for creating regular expressions with scanners for example
+
+# The re module is used for creating regular expressions with scanners for example
 # cprint is a function from the termcolor module, that allows us to change the color of the text in the terminal
 # We use the scapy module for packet manipulation, for example in a network scanner
 # We import the nmap module to be able to scan ports on a network
@@ -30,12 +29,13 @@ cprint(f'\n* Color guide:                                *', 'white')
 cprint(f'\n* Red -> There was an error.                  *', 'red')
 cprint(F'\n* Green -> No error.                          *', 'green')
 
-# Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
-ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
-nmScan = nmap.PortScanner()
+
 
 # Here is a try and except statement. We use them to help the program except errors and continue gracefully without crashing
 try:
+    # Here we use regular expression to ensure the program will handle and reconize the ipv4 address, from user input
+    ip_add_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
+    nmScan = nmap.PortScanner()     
     # Asking the user for a subnet to scan
     ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
         
@@ -49,11 +49,9 @@ try:
 except:
     cprint(f'\n* Something went wrong, please try again  *', 'red')
 
-    
-nmScan.scan = input("\n Please enter an ip address to scan: ")
-portStart, portEnd = raw_input ("\n Please enter a port-port: " ).split("-")
-
-nmScan.scan('192.142.132', '21-443')
+ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
+portStartEnd = 0-5000
+nmScan.scan = portStartEnd, ip_add_range_entered
 
 try:
     for host in nmScan.all_hosts():
