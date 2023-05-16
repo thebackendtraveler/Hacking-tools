@@ -21,7 +21,7 @@ try:
     for port in range(1,65536):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(0.5)
-        t = threading.Thread(target, args = ())
+        t = threading.Thread(target = (), args = ())
         t.setDaemon(True)
         t.start()
 
