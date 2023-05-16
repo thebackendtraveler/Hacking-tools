@@ -8,7 +8,7 @@ from termcolor import cprint
 ascii_banner = pyfiglet.figlet_format("RACCOON MAPPER")
 cprint(ascii_banner, 'blue')
 
-target = input(str("target IP: "))
+target = input(str("Target IP: "))
 
 #Banner
 cprint("_" * 50, 'green')
