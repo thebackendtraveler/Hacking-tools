@@ -58,7 +58,7 @@ for host in nmScan.all_hosts():
     cprint('Host : %s (%s)' % (host, nmScan[host].hostname()), 'red')
     cprint('State : %s' % nmScan[host].state(), 'red')
     for proto in nmScan[host].all_protocols():
-        cprint('----------'), 'red'
+        cprint('----------', 'red')
         cprint('Protocol : %s' % proto, 'red')
         cprint('Hello', 'blue')
         lport = nmScan[host][proto].keys()
