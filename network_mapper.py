@@ -49,10 +49,8 @@ if ip_add_range_pattern.search(ip_add_range_entered):
 #except:
     #cprint(f'\n* Something went wrong, please try again  *', 'red')
 
-ip_add_range_entered = input("\nPlease enter the ip address and range that you want to send the ARP request to (ex 192.168.1.0/24): ")
-portStartEnd = 0-5000
-nmScan.scan = portStartEnd, ip_add_range_entered
-nmScan.scan = ('192.168.142.132', '0 - 65000')
+
+nmScan.scan = ('192.168.142.132', '21 - 443')
 
 #try:
 for host in nmScan.all_hosts():
