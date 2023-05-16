@@ -26,7 +26,7 @@ subnet = input("Target subnet: " )
 #Banner
 cprint("_" * 50, 'green')
 cprint("Scanning Subnet " + subnet, 'green')
-cprint("Scanning started at: " + str(datetime.now()))
+cprint("Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 
