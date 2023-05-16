@@ -52,16 +52,16 @@ if ip_add_range_pattern.search(ip_add_range_entered):
 
 nmScan.scan = ('192.168.142.132', '21 - 443')
 
-try:
-    for host in nmScan.all_hosts():
-        print('Host : %s (%s)' % (host, nmScan[host].hostname()))
-        print('State : %s' % nmScan[host].state())
-    for proto in nmScan[host].all_protocols():
-        print('----------')
-        print('Protocol : %s' % proto)
+#try:
+for host in nmScan.all_hosts():
+    print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+    print('State : %s' % nmScan[host].state())
+for proto in nmScan[host].all_protocols():
+    print('----------')
+    print('Protocol : %s' % proto)
  
-    lport = nmScan[host][proto].keys()
-    for port in lport:
-        print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
-except:
-    cprint(f'\nThere was an error happening, please try again..', 'red')
+lport = nmScan[host][proto].keys()
+for port in lport:
+    print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+#except:
+    #cprint(f'\nThere was an error happening, please try again..', 'red')
