@@ -51,6 +51,7 @@ cprint("_" * 50, 'green')
 cprint("172.0.0.1: Localhost", 'green')
 cprint("192.168.142.133: Localhost", 'green')
 cprint("192.168.142.132: Windows PC", 'green')
+cprint("_" * 50, 'green')
 
 target = input(str("Target IP: "))
 
