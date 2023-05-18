@@ -19,17 +19,15 @@ r"""
 subnet_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 subnet_range_entered = input("\n Target subnet (ex 192.168.1.0/24): ")
 
-
-
-#Banner
+#Banner with information about the target, when the scan started
 cprint("_" * 50, 'green')
-cprint("Scanning Subnet " + subnet_range_entered, 'green')
-cprint("Scanning started at: " + str(datetime.now()), 'green')
+cprint("\n Scanning Subnet " + subnet_range_entered, 'green')
+cprint("\n Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 
 try:
-    #Scan every host on the target subnet
+    #Scan every host on the target subnet address
     if subnet_range_pattern.search(subnet_range_entered):
         cprint(f"{subnet_range_entered} is a valid ip address range", 'green')
 
@@ -45,43 +43,36 @@ except TimeoutError:
 
 
 # The port scanner code starts
-
-#Menu
-cprint("_" * 50, 'green')
-cprint("172.0.0.1: Localhost", 'green')
-cprint("192.168.142.133: Localhost", 'green')
-cprint("192.168.142.132: Windows PC", 'green')
-cprint("_" * 50, 'green')
-
+# Asking the user for an IP address
 target = input(str("Target IP: "))
 
-#Banner
+#Banner with information about the target, when the scan started
 cprint("_" * 50, 'green')
-cprint("Scanning Target: " + target, 'green')
-cprint("Scanning started at: " + str(datetime.now()), 'green')
+cprint("\n Scanning Target: " + target, 'green')
+cprint("\n Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 try:
-
-    #Scan every port on the target ip
+    
+    #Scan every port on the target ip address
     for port in range(1,65536):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(0.5)
 
-        #Return open port
+        #Return the open port
         result = s.connect_ex((target, port))
         if result == 0:
             cprint("[*] Port {} is open".format(port), 'green')
         s.close()
-except KeyboardInterrupt: 
+except KeyboardInterrupt:
+        # If the user hits a key on the keyboard, the program will exit 
         cprint("\n Exiting :(", 'red')
         sys.exit()
 except TimeoutError:
+        # If the program gets a timeout, it will exit 
         cprint("\n Host is not responding :(", 'red')
         sys.exit()
 
 
 
-#I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
-#when the user selects ip address one, this should be scanned for open ports.
 
