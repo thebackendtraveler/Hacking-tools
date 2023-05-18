@@ -42,6 +42,7 @@ except TimeoutError:
         cprint("\n Network is not responding :(", 'red')
         sys.exit()
 
+print("\n")
 
 # The port scanner code starts
 # Asking the user for an IP address
