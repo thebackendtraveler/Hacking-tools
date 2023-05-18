@@ -1,8 +1,6 @@
-import pyfiglet
 import sys
 import socket
 from datetime import datetime
-import threading
 from termcolor import cprint
 import scapy.all as scapy
 import re 
@@ -41,21 +39,12 @@ try:
 except KeyboardInterrupt:
         cprint("\n Exiting :(", 'red')
         sys.exit()
-except AttributeError:
+except TimeoutError:
         cprint("\n Network is not responding :(", 'red')
         sys.exit()
 
 
-#User interface
-cprint(
-r""" 
-  _____    ______   _____   _____   _____   _____   ___     _      ___        ___   ______   _____   _____   ____   _____   
- |  _  \  |  __  | |  _  | |  _  | |  _  | |  _  | |   \   | |    |   \      /   | |  __  | |  _  \ |  _  \ | ___| |  _  \ 
- | | | |  | |  | | | | |_| | | |_| | | | | | | | | | |\ \  | |    | |\ \    / /| | | |  | | | |_| | | |_| | | |__  | | | |  
- | |_| |  | |__| | | |  _  | |  _  | | | | | | | | | | \ \ | | -> | | \ \  / / | | | |__| | |  ___/ |  ___/ |  __| | |_| |  
- |  __ \  |  __  | | |_| | | |_| | | |_| | | |_| | | |  \ \| |    | |  \ \/ /  | | |  __  | | |     | |     | |__  |  __ \  
- |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|   \__/   |_| |_|  |_| |_|     |_|     |____| |_|  \_\ 
-                                                                                                                             """, 'blue')
+# The port scanner code starts
 
 target = input(str("Target IP: "))
 
@@ -80,16 +69,12 @@ try:
 except KeyboardInterrupt: 
         cprint("\n Exiting :(", 'red')
         sys.exit()
-except socket.error:
+except TimeoutError:
         cprint("\n Host is not responding :(", 'red')
         sys.exit()
 
 
-#this works so nice, 
-#but I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
+
+#I want to be able to select ip addresses from the ones scapy uncovered. So much like a menu program
 #when the user selects ip address one, this should be scanned for open ports.
-#the options should be displayed to the user
-#make the menu east to navigate and understand
-#great work man
-#the error handlings seems to work nice too
-#and I love the keyboard interrupt exception
+
