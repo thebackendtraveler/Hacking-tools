@@ -47,7 +47,7 @@ print("\n")
 
 # The port scanner code starts
 # Asking the user for an IP address
-target = input(str("Target IP: "))
+target = input(str("Target IP (ex 192.168.1.0): "))
 
 # Banner with information about the target, when the scan started
 cprint("_" * 50, 'green')
