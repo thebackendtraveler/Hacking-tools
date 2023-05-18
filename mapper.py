@@ -5,7 +5,8 @@ from termcolor import cprint
 import scapy.all as scapy
 import re 
 
-#User interface
+# The network mapper starts
+# User interface
 cprint(
 r""" 
   _____    ______   _____   _____   _____   _____   ___     _      ___        ___   ______   _____   _____   ____   _____   
@@ -19,19 +20,19 @@ r"""
 subnet_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 subnet_range_entered = input("\n Target subnet (ex 192.168.1.0/24): ")
 
-#Banner with information about the target, when the scan started
+# Banner with information about the target, when the scan started
 cprint("_" * 50, 'green')
-cprint("\n Scanning Subnet " + subnet_range_entered, 'green')
-cprint("\n Scanning started at: " + str(datetime.now()), 'green')
+cprint("Scanning Subnet " + subnet_range_entered, 'green')
+cprint("Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 
 try:
-    #Scan every host on the target subnet address
+    # Scan every host on the target subnet address
     if subnet_range_pattern.search(subnet_range_entered):
         cprint(f"{subnet_range_entered} is a valid ip address range", 'green')
 
-        #Return ipaddresses from the subnet 
+        # Return ipaddresses from the subnet 
         arp_result = scapy.arping(subnet_range_entered)
         cprint(arp_result, 'green')
 except KeyboardInterrupt:
@@ -46,20 +47,20 @@ except TimeoutError:
 # Asking the user for an IP address
 target = input(str("Target IP: "))
 
-#Banner with information about the target, when the scan started
+# Banner with information about the target, when the scan started
 cprint("_" * 50, 'green')
-cprint("\n Scanning Target: " + target, 'green')
-cprint("\n Scanning started at: " + str(datetime.now()), 'green')
+cprint("Scanning Target: " + target, 'green')
+cprint("Scanning started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
 try:
     
-    #Scan every port on the target ip address
+    # Scan every port on the target ip address
     for port in range(1,65536):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(0.5)
 
-        #Return the open port
+        # Return the open port
         result = s.connect_ex((target, port))
         if result == 0:
             cprint("[*] Port {} is open".format(port), 'green')
