@@ -41,9 +41,7 @@ except KeyboardInterrupt:
 except TimeoutError:
         cprint("\n Network is not responding :(", 'red')
         sys.exit()
-except ValueError:
-        # If the user input an ip address that does not have the right value
-        cprint("\n That is not the right value. Try again :(", 'red')
+
 
 print("\n")
 
@@ -77,9 +75,7 @@ except TimeoutError:
         # If the program gets a timeout, it will exit 
         cprint("\n Host is not responding :(", 'red')
         sys.exit()
-except ValueError:
-        # If the user input an ip address that does not have the right value
-        cprint("\n That is not the correct value. Try again :(", 'red')
+
 
 
 
