@@ -6,17 +6,21 @@ from datetime import datetime
 user_password = input("What password do you want to crack?: ")
 wordlist = 'wordlist.txt'
 
+
 def crackHash(user_password):
     try:
-        plist = open("wordlist.txt", "r")
+        wordlist = open("wordlist.txt", "r")
     except:
         print("Could not find file")
         
-    for password in plist:
+    for password in wordlist:
         encPass = password.encode("utf-8")
         digest = hashlib.md5(encPass.strip()).hexdigest()
         if digest == user_password:
             print("Password Found: " + password)
+
+if __name__ == '__main__':
+    crackHash(user_password)
 
 #password_1 = 'password'
 #password_2 = 'crackingmewillbedifficult'
