@@ -3,7 +3,8 @@ import hashlib
 from urllib.request import urlopen
 from datetime import datetime
 
-# Basic user interface header
+# The password cracker starts
+# User interface
 cprint(
 r"""
   _____    ______   _____   _____   _____   _____   ___     _      ____    _____   _____    ______   _____   _   _   ____   _____   
