@@ -16,13 +16,16 @@ r"""
                                                                                                                                      """, 'blue')
 
 
+user_password = input("What password do you want to crack?: ")
+wordlist = 'wordlist.txt'
+
 url = "www.yourlinkgoeshere.com"
 actual_password = "tomi"
 actual_password_hash = "3675886jghjsnck9sjdkg"
 
 
 cprint("_" * 50, 'green')
-cprint("Cracking password " + actual_password_hash, 'green')
+cprint("Cracking password " + user_password, 'green')
 cprint("Password cracking started at: " + str(datetime.now()), 'green')
 cprint("_" * 50, 'green')
 
