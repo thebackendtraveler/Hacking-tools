@@ -7,20 +7,39 @@ user_password = input("What password do you want to crack?: ")
 wordlist = 'wordlist.txt'
 
 
-def crackHash(user_password):
+def crackHash(password):
     try:
         wordlist = open("wordlist.txt", "r")
     except:
         print("Could not find file")
         
     for password in wordlist:
+        encPass = user_password.encode("utf-8")
+        digest = hashlib.md5(encPass.strip()).hexdigest()
+        if digest == password:
+            print("Password Found: " + password)
+    
+    if user_password in wordlist:
+        print('Password Found')
+
+if __name__ == '__main__':
+    crackHash = input("What password do you want to crack?: ")
+
+
+def crackHash(inputPass):
+    try:
+        passFile = open("wordlist.txt", "r")
+    except:
+        print("Could not find file")
+        
+    for password in passFile:
         encPass = password.encode("utf-8")
         digest = hashlib.md5(encPass.strip()).hexdigest()
-        if digest == user_password:
+        if digest == inputPass:
             print("Password Found: " + password)
 
 if __name__ == '__main__':
-    crackHash(user_password)
+    crackHash("22c276a05aa7c90566ae2175bcc2a9b0")
 
 #password_1 = 'password'
 #password_2 = 'crackingmewillbedifficult'
