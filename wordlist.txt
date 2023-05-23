@@ -1,6 +1,5 @@
-password, hash_value
-password,5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8
-crackingmewillbedifficult,f336aafb01555a667449e30154e5c8d7534426cb
-baileyiscute,50d9385da5631e36102cd2db1031df3dc66e9694
-tryhackme,9c695c724bc5ca9dfca113ff7d91286b3e5f47e8
-iamafirewall,fe3917a529dfe8539c4c64cc36d83d471301ad66
+password
+crackingmewillbedifficult
+baileyiscute
+tryhackme
+iamafirewall
