@@ -18,15 +18,15 @@ if __name__ == '__main__':
 
 def crackHash(inputPass):
     try:
-        passFile = open("hashes.txt", "r")
+        hashFile = open("hashes.txt", "r")
     except:
         print("Could not find file")
         
-    for password in passFile:
-        encPass = password.decode("utf-8")
+    for hash in hashFile:
+        encPass = hash.decode("utf-8")
         digest = hashlib.md5(encPass.strip()).hexdigest()
         if digest == inputPass:
-            cprint("SUCCESS!! Password Found: " + password, 'green')
+            cprint("SUCCESS!! Password Found: " + hash, 'green')
 
 if __name__ == '__main__':
     crackHash("password")
