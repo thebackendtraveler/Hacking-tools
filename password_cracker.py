@@ -18,10 +18,10 @@ r"""
 
 hash = input("Give me a hash to crack: ")
 
-cprint("_" * 50, 'green')
-cprint("Cracking password " + hash, 'green')
-cprint("Password cracking started at: " + str(datetime.now()), 'green')
-cprint("_" * 50, 'green')
+cprint("_" * 50, 'blue')
+cprint("Cracking password " + hash, 'blue')
+cprint("Password cracking started at: " + str(datetime.now()), 'blue')
+cprint("_" * 50, 'blue')
 
 def crackHash(inputPass):
     try:
@@ -30,16 +30,15 @@ def crackHash(inputPass):
         print("Could not find file")
         
     for password in passFile:
-        cprint('password', 'blue')
         encPass = password.encode("utf-8")
         digest = hashlib.md5(encPass.strip()).hexdigest()
+        if digest != inputPass:
+            cprint("FAIL!! Wrong combination: " + password, 'red')
         if digest == inputPass:
             cprint("SUCCESS!! Password Found: " + password, 'green')
 
 if __name__ == '__main__':
-    #crackHash("5f4dcc3b5aa765d61d8327deb882cf99")
-    crackHash = input("Give me a hash to crack: ")
+    crackHash("5f4dcc3b5aa765d61d8327deb882cf99")
+    
 
-#wordlist = readwordlist(url).decode('UTF-8')
-#guesspasswordlist = wordlist.split('7n')
         
