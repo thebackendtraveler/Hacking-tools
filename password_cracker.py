@@ -24,8 +24,12 @@ cprint("Cracking password " + hash, 'blue')
 cprint("Password cracking started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
-# This function will open a wordfile, hash the passwords, and compare it to the defined hash.
+
 def crackHash(inputPass):
+    """
+    This function will open a wordfile, 
+    hash the passwords, and compare it to the defined hash.
+    """
     try:
         passFile = open("wordlist.txt", "r")
     except:
