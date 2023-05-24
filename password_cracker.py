@@ -28,21 +28,19 @@ def crackHash(inputPass):
         passFile = open("wordlist.txt", "r")
     except:
         print("Could not find file")
-        
-    for password in passFile:
-        encPass = password.encode("utf-8")
-        digest = hashlib.md5(encPass.strip()).hexdigest()
-        if digest != inputPass:
-            cprint("FAIL!! Wrong combination: " + password, 'red')
-        if digest == inputPass:
-            cprint("SUCCESS!! Password Found: " + password, 'green')
-
-    for hash in passFile:
-        print(hash)
-
+    try:    
+        for password in passFile:
+            encPass = password.encode("utf-8")
+            digest = hashlib.md5(encPass.strip()).hexdigest()
+            if digest != inputPass:
+                cprint("FAIL!! Wrong combination: " + password, 'red')
+            if digest == inputPass:
+                cprint("SUCCESS!! Password Found: " + password, 'green')
+    except AttributeError:
+        cprint('That is not the correct attribute. Please try again....', 'red')
 
 if __name__ == '__main__':
-    crackHash("5f4dcc3b5aa765d61d8327deb882cf99")
+    crackHash("d3eb05a3d5bb7e4901f739286ba8eee9")
     
 
         
