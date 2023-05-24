@@ -1,5 +1,5 @@
 password
-crackingmewillbedifficult
+crackme
 baileyiscute
 tryhackme
 iamafirewall
