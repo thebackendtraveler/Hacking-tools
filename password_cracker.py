@@ -37,6 +37,10 @@ def crackHash(inputPass):
         if digest == inputPass:
             cprint("SUCCESS!! Password Found: " + password, 'green')
 
+    for hash in passFile:
+        print(hash)
+
+
 if __name__ == '__main__':
     crackHash("5f4dcc3b5aa765d61d8327deb882cf99")
     

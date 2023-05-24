@@ -1,6 +1,5 @@
-password : hash
-ilovecoffee : 399ef3b0f797ec1cd8e6c40b09e9c428
-crackme : 33c5d4954da881814420f3ba39772644
-manchesterunited : d3eb05a3d5bb7e4901f739286ba8eee9
-tryhackme : 5b31f93c09ad1d065c0491b764d04933
-iamafirewall : 9e847da3f14c7dc38c325809891628c1
+ilovecoffee
+crackme
+manchesterunited
+tryhackme
+iamafirewall
