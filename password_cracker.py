@@ -36,10 +36,10 @@ def crackHash(digest2):
         print("Could not find file")
     try:    
         for password in passFile:
-            encHash = hash.encode("utf-8")
-            digest2 = hashlib.md5(encHash.strip()).hexdigest()
+            encHash = hash.encode("utf-8") # This line hashes the input string
+            digest2 = hashlib.md5(encHash.strip()).hexdigest() # Here a digest for the input string is created
             cprint("Input hash: " + digest2, 'white')
-            encPass = password.encode("utf-8") #This code is hashing the plain text passwords
+            encPass = password.encode("utf-8") # This code is hashing the plain text passwords
             digest = hashlib.md5(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + digest, 'white')
             if digest != digest2:
