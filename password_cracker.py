@@ -21,8 +21,9 @@ cprint("_" * 50, 'blue')
 
 def crackHash(digest2):
     """
-    This function will open a wordfile, 
-    hash the passwords, and compare it to the defined hash.
+    This function will hash the user input, 
+    open the wordlist.txt and hash the passwords, 
+    and compare it to the user input hash.
     """
     try:
         passFile = open("wordlist.txt", "r")
@@ -42,8 +43,8 @@ def crackHash(digest2):
             if digest == digest2:
                 # This code runs when the digest is the same as crackHash
                 cprint("SUCCESS!! Password Found: " + password, 'green')
-    except :
-        cprint('That is not the correct attribute. Please try again....', 'red')
+    except:
+        cprint('OOOPS, there was an error. Please try again...', 'red')
 
 # This line is calling the crackHash function. The code will not run if this is removed.
 if __name__ == '__main__':
