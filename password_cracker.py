@@ -15,8 +15,8 @@ r"""
  |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|     |_____| |_|  \_\ |_|  |_| |_____| |_| \_\ |____| |_|  \_\ 
                                                                                                                                      """, 'blue')
 
-#Asking the user for a hash to crack
-hash = input("What hash do you want to crack (ex: 5d41402abc4b2a76b9719d911017c592): ")
+#Asking the user for a string to hash, this will be checked towards the wordlists
+hash = input("Enter a string to hash: ")
 
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
@@ -25,7 +25,7 @@ cprint("Password cracking started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
 
-def crackHash(inputPass):
+def crackHash(digest2):
     """
     This function will open a wordfile, 
     hash the passwords, and compare it to the defined hash.
@@ -36,12 +36,16 @@ def crackHash(inputPass):
         print("Could not find file")
     try:    
         for password in passFile:
+            encHash = hash.encode("utf-8")
+            digest2 = hashlib.md5(encHash.strip()).hexdigest()
+            cprint("Input hash: " + digest2, 'white')
             encPass = password.encode("utf-8") #This code is hashing the plain text passwords
             digest = hashlib.md5(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
-            if digest != inputPass:
+            cprint("List hash : " + digest, 'white')
+            if digest != digest2:
                 # This code will only run when the digest is not the same as the crackHash
                 cprint("FAIL!! Wrong combination: " + password, 'red')
-            if digest == inputPass:
+            if digest == digest2:
                 # This code runs when the digest is the same as crackHash
                 cprint("SUCCESS!! Password Found: " + password, 'green')
     except AttributeError:
