@@ -1,19 +1,13 @@
 from termcolor import cprint
 import hashlib
-from urllib.request import urlopen
+import pyfiglet
 from datetime import datetime
 
 # The password cracker starts
 # User interface
-cprint(
-r"""
-  _____    ______   _____   _____   _____   _____   ___     _      ____    _____   _____    ______   _____   _   _   ____   _____   
- |  _  \  |  __  | |  _  | |  _  | |  _  | |  _  | |   \   | |    |  _ \  |  _  | |  _  \  |  __  | |  _  | | | / / | ___| |  _  \  
- | | | |  | |  | | | | |_| | | |_| | | | | | | | | | |\ \  | |    | |_| | | | |_| | | | |  | |  | | | | |_| | |/ /  | |_   | | | |  
- | |_| /  | |__| | | |  _  | |  _  | | | | | | | | | | \ \ | | -> | ___/  | |  _  | |_| /  | |__| | | |     |    |  |  _|  | |_| /  
- |  __ \  |  __  | | |_| | | |_| | | |_| | | |_| | | |  \ \| |    | |     | |_| | |  __ \  |  __  | | |_| | | |\ \  | |__  |  __ \  
- |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|     |_____| |_|  \_\ |_|  |_| |_____| |_| \_\ |____| |_|  \_\ 
-                                                                                                                                     """, 'blue')
+banner = pyfiglet.figlet_format("RACCOON -> PCRACKER")
+cprint(banner, 'blue')
+
 
 #Asking the user for a string to hash, this will be checked towards the wordlists
 hash = input("Enter a string to hash: ")
@@ -32,7 +26,7 @@ def crackHash(digest2):
     """
     try:
         passFile = open("wordlist.txt", "r")
-    except:
+    except FileNotFoundError:
         print("Could not find file")
     try:    
         for password in passFile:
@@ -48,7 +42,7 @@ def crackHash(digest2):
             if digest == digest2:
                 # This code runs when the digest is the same as crackHash
                 cprint("SUCCESS!! Password Found: " + password, 'green')
-    except AttributeError:
+    except :
         cprint('That is not the correct attribute. Please try again....', 'red')
 
 # This line is calling the crackHash function. The code will not run if this is removed.

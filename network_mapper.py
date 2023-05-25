@@ -4,18 +4,13 @@ from datetime import datetime
 from termcolor import cprint
 import scapy.all as scapy
 import re 
+import pyfiglet
 
 # The network mapper starts
 # User interface
-cprint(
-r""" 
-  _____    ______   _____   _____   _____   _____   ___     _      ___        ___   ______   _____   _____   ____   _____   
- |  _  \  |  __  | |  _  | |  _  | |  _  | |  _  | |   \   | |    |   \      /   | |  __  | |  _  \ |  _  \ | ___| |  _  \  
- | | | |  | |  | | | | |_| | | |_| | | | | | | | | | |\ \  | |    | |\ \    / /| | | |  | | | |_| | | |_| | | |__  | | | |  
- | |_| |  | |__| | | |  _  | |  _  | | | | | | | | | | \ \ | | -> | | \ \  / / | | | |__| | |  ___/ |  ___/ |  __| | |_| |  
- |  __ \  |  __  | | |_| | | |_| | | |_| | | |_| | | |  \ \| |    | |  \ \/ /  | | |  __  | | |     | |     | |__  |  __ \  
- |_|  \_\ |_|  |_| |_____| |_____| |_____| |_____| |_|   \___|    |_|   \__/   |_| |_|  |_| |_|     |_|     |____| |_|  \_\ 
-                                                                                                                               """, 'blue')
+banner = pyfiglet.figlet_format("RACCOON -> MAPPER")
+cprint(banner, 'blue')
+
 
 subnet_range_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]*$")
 subnet_range_entered = input("\n Target subnet (ex 192.168.1.0/24): ")
