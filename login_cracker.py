@@ -7,6 +7,7 @@ from datetime import datetime
 banner = pyfiglet.figlet_format("RACCOON -> LCRACKER")
 cprint(banner, 'blue')
 
+# Asking the user for a URL anda username to use in the attack
 url = input("What URL do you want to bruteforce? (ex.http://192.168.142.137/dvwa/login.php): ")
 username = input("What username do you want to try? (ex admin): ")
 
@@ -18,6 +19,9 @@ cprint("Cracking with username " + username, 'blue')
 cprint("Cracking login page started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
+# This is where we ask the user for a password file. The program will read it
+# if the password is found, it will be printed in green
+# if the password is not found, it will be printed as 'attempt failed' in red
 try:
     password_file = input("Please enter the name of the password file: ")
     file = open(password_file, "r")
