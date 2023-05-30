@@ -38,13 +38,9 @@ try:
 
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data, verify=False)
-    cprint("The header: ", 'green')
-    print(send_data_url.headers)
-    cprint("The HTTP status code: ", 'green')
     print(send_data_url.status_code, ": HTTP status")
     cprint("The HTML: ", 'green')
     print(send_data_url.content)
-    cprint("The URL: ", 'green')
     print(send_data_url.url, ": The URL")
 
     if "Login failed" in str(send_data_url.content):
