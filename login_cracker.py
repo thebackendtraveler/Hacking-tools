@@ -39,8 +39,11 @@ try:
 
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data, verify=False)
+    status_code = send_data_url.status_code
+    html = send_data_url.content
+    cprint("HTTP status code: " + status_code, 'green')
     cprint("HTTP status code: ", 'green')
-    print(send_data_url.status_code)
+    cprint(send_data_url.status_code, 'green')
     cprint("The HTML: ", 'green')
     print(send_data_url.content)
     cprint("The URL: ", 'green')
