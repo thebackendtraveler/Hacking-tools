@@ -3,6 +3,7 @@ import pyfiglet
 import requests
 from datetime import datetime
 
+
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> LCRACKER")
 cprint(banner, 'blue')
@@ -44,6 +45,7 @@ try:
     print(send_data_url.content)
     cprint("The URL: ", 'green')
     print(send_data_url.url)
+
 
     if "Login failed" in str(send_data_url.content):
         cprint("[*] Attempting password: %s" % password, 'red')
