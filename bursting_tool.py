@@ -4,8 +4,8 @@ import sys
 import socket
 import requests
 
-rhost = sys.argv
-wordlist = sys.argv
+rhost = input("Which remote host is your target? ")
+wordlist = input("What file do you want to use? ")
 
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> BURSTER")
@@ -38,6 +38,7 @@ except IOError:
      cprint("[*] Failed to read the specified file...", 'red')
      sys.exit()
 
+# This is the core of the directory bursting. It will check for valid paths compared with the wordlist
 def checkpath(path):
     try:
         response = requests.get('http://' + rhost + '/' + path).status_code
