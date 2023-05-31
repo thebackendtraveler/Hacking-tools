@@ -42,7 +42,7 @@ try:
     with open(wordlist) as file:
             to_check = file.read().strip().split('\n')
     cprint("[*] Success! Done", 'green')
-    cprint("[*] Total paths to check: %s" %(str(len(to_check))))
+    cprint("[*] Total paths to check: %s" %(str(len(to_check))), 'green')
 except IOError: 
      cprint("[*] Failed to read the specified file...", 'red')
      sys.exit()
@@ -52,11 +52,11 @@ def checkpath(path):
     try:
         response = requests.get('http://' + rhost + '/' + path).status_code
         if response == 200:
-                cprint("[*] Valid path found: /%s", 'green')
-                cprint("\n[*] Beginning scan...\n", 'green')
-                for i in range(len(to_check)):
-                        checkpath(to_check[i])
-                cprint("[*] Success! Scan Complete!", 'green')
+            cprint("[*] Valid path found: /%s", 'green')
+            cprint("\n[*] Beginning scan...\n", 'green')
+            for i in range(len(to_check)):
+                    checkpath(to_check[i])
+            cprint("[*] Success! Scan Complete!", 'green')
 
     except KeyboardInterrupt:
             cprint("[*] An error happened. The user inerrupted the scan")
