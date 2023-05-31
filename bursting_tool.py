@@ -21,7 +21,7 @@ cprint("_" * 50, 'blue')
 
 
 # This is the code that will check the RHOST to see if it is valid
-cprint("[*] Checking RHOST.....", 'green')
+cprint("[*] Checking RHOST.....[Done]", 'green')
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     status = s.connect_ex((rhost, 80))
@@ -37,7 +37,7 @@ except socket.error:
     sys.exit(1)
 
 # This is the code that will check the wordlist file for relevant words to use
-cprint("[*] Checking wordlist...", 'green')
+cprint("[*] Checking wordlist...[Done]", 'green')
 try:
     with open(wordlist) as file:
             to_check = file.read().strip().split('\n')
