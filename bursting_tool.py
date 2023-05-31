@@ -3,6 +3,7 @@ import pyfiglet
 import sys
 import socket
 import requests
+from datetime import datetime
 
 rhost = input("Which remote host is your target? ")
 wordlist = input("What file do you want to use? ")
@@ -10,6 +11,14 @@ wordlist = input("What file do you want to use? ")
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> BURSTER")
 cprint(banner, 'blue')
+
+#The banner with information about when the cracking starts + the hash to be cracked
+cprint("_" * 50, 'blue')
+cprint("Remote host is " + rhost, 'blue')
+cprint("Wordfile is " + wordlist, 'blue')
+cprint("Directory bursting  started at: " + str(datetime.now()), 'blue')
+cprint("_" * 50, 'blue')
+
 
 # This is the code that will check the RHOST to see if it is valid
 cprint("[*] Checking RHOST.....", 'green')
