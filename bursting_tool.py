@@ -30,7 +30,7 @@ try:
         cprint("[*] DONE", 'green')
         pass
     else:
-        cprint("[*] FAIl; There was an error...", 'red')
+        cprint("[*] Attempt unsuccessful. There was an error...", 'red')
         sys.exit(1)
 except socket.error:
     cprint("[*] Cannot reach RHOST: %s\n")
