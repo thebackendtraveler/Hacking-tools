@@ -5,8 +5,8 @@ import socket
 import requests
 from datetime import datetime
 
-rhost = input("Which remote host is your target? ")
-wordlist = input("What file do you want to use? ")
+rhost = input("Which remote host is your target? (ex. 192.168.142.138): ")
+wordlist = input("What file do you want to use? (ex wordfile.txt): ")
 
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> BURSTER")
