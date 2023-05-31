@@ -33,7 +33,7 @@ try:
             cprint("[*] Attempt unsuccessful. There was an error...", 'red')
             sys.exit(1)
     except socket.error:
-        cprint("[*] Cannot reach RHOST: %s\n")
+        cprint("[*] Cannot reach RHOST: %s", 'red')
         sys.exit(1)
 
     # This is the code that will check the wordlist file for relevant words to use
@@ -55,7 +55,7 @@ try:
                     print('This works 2')
                     response = requests.get('http://' + rhost + '/' + path).status_code
             except Exception:
-                    cprint("[*] An unexpefcted error occurred..")
+                    cprint("[*] An unexpefcted error occurred..", 'red')
                     
             if response != 200:
                     print("Ooops the response code is not 200")
@@ -67,5 +67,5 @@ try:
                     cprint("[*] Success! Scan Complete!", 'green')
 
 except KeyboardInterrupt:
-        cprint("[*] An error happened. The user inerrupted the scan")
+        cprint("[*] An error happened. The user inerrupted the scan", 'red')
         sys.exit(1)
