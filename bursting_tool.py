@@ -8,14 +8,13 @@ import random
 import time
 from datetime import datetime
 
-
-url = sys.argv[1]
-wordlist = sys.argv[2]
-subdir = sys.argv[3]
-
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> BURSTER")
 cprint(banner, 'blue')
+
+url = input("What URL do you want to check?: ")
+wordlist = input("What wordlist do you want to use?: ")
+subdir = input("What subdirectory do you want to look for?: ")
 
 #The banner with information about when the bursting starts + the URL used
 cprint("_" * 50, 'blue')
@@ -58,9 +57,12 @@ try:
 except TimeoutError:
        cprint("Sorry. The session timed out....", 'red')
 
-url = 'http://192.168.142.138/twiki/'
-wordlist = 'path.txt'
-ext = '.txt' 
+
+print("\n")
+
+url = input("What URL do you want to check?: ")
+wordlist = input("What wordlist do you want to use?: ")
+ext = input("What extension do you want to look for?: ")
 
 
 #The banner with information about when the bursting starts + the URL used
