@@ -10,5 +10,7 @@ twiki
 phpMyAdmin
 dav
 mutillidae
-readme.txt
-license.txt
+readme
+license
+TWikiDocumentation
+TWikiHistory
