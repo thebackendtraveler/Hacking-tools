@@ -8258,3 +8258,13 @@ twiki
 phpMyAdmin
 dav
 mutillidae
+dvwa
+twiki
+phpMyAdmin
+dav
+mutillidae
+dvwa
+twiki
+phpMyAdmin
+dav
+mutillidae
