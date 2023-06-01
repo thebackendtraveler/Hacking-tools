@@ -13,7 +13,7 @@ def write(word):
     f1.write(word +"\n")
 
 fo = open(wordlist, "r+")
-for i in range(2000):
+for i in range(50):
     word = fo.readline(10).strip()
     surl = url+word+subdir
     #print(surl)

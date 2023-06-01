@@ -7,8 +7,8 @@ sql
 html
 dvwa
 twiki
-phpmyadmin
-webdav
+phpMyAdmin
+dav
 mutillidae
-readme
-license
+readme.txt
+license.txt
