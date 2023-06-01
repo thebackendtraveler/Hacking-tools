@@ -1,0 +1,7 @@
+documents
+pictures
+dvwa
+twiki
+phpMyAdmin
+dav
+mutillidae
