@@ -10,3 +10,5 @@ twiki
 phpmyadmin
 webdav
 mutillidae
+readme
+license
