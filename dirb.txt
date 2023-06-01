@@ -1,5 +1,6 @@
 documents
 pictures
+myfiles
 dvwa
 twiki
 phpMyAdmin

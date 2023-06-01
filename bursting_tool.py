@@ -38,7 +38,7 @@ except FileNotFoundError:
 try: 
 # This code will open the wordlist, red the lines and split them after 11 characters.
       fo = open(wordlist, "r+")
-      for i in range(14):
+      for i in range(8):
           word = fo.readline(11).strip()
           surl = url+word+subdir
           #print(surl)
@@ -87,8 +87,8 @@ except FileNotFoundError:
 try: 
 # This code will open the wordlist, red the lines and split them after 11 characters.
       fo = open(wordlist, "r+")
-      for i in range(14):
-          word = fo.readline(11).strip()
+      for i in range(8):
+          word = fo.readline(20).strip()
           surl = url+word+ext
           #print(surl)
 
