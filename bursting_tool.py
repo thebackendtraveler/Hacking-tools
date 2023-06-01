@@ -3,15 +3,15 @@
 from termcolor import cprint
 import pyfiglet
 import sys
-import socket
 import requests
+import random
+import time
 from datetime import datetime
 
 
-rhost = input("Which remote host is your target? (ex. 192.168.142.138): ")
-wordlist = input("What file do you want to use? (ex wordfile.txt): ")
-#rhost = sys.argv[0]
-#wordlist = sys.argv[1]
+url = sys.argv[1]
+wordlist = sys.argv[2]
+subdir = sys.argv[3]
 
 # Basic user interface header
 banner = pyfiglet.figlet_format("RACCOON -> BURSTER")
@@ -19,51 +19,39 @@ cprint(banner, 'blue')
 
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
-cprint("Remote host is " + rhost, 'blue')
+cprint("URL is " + url, 'blue')
 cprint("Wordfile is " + wordlist, 'blue')
-cprint("Directory bursting started at: " + str(datetime.now()), 'blue')
+cprint("Directory bursting (subdirectories) started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
-# This is the code that will check the RHOST to see if it is valid
-cprint("[*] Checking RHOST.....[Done]", 'green')
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-        status = s.connect_ex((rhost, 80))
-        s.close()
-        if status == 0:
-            cprint("[*] DONE checking RHOST", 'green')
-            pass
-        else:
-            cprint("[*] Attempt unsuccessful. There was an error...", 'red')
-            sys.exit(1)
-except socket.error:
-        cprint("[*] Cannot reach RHOST: %s", 'red')
-        sys.exit(1)
+try: 
+# A function that will create, open and write the found directories to a .txt file
+      def write(word):
+             f1 = open("write1.txt", "a")
+             f1.write(word +"\n")
+except FileExistsError:
+      cprint("This file already exists!", 'red')
+except FileNotFoundError: 
+      cprint("Sorry, this file does not exist!", 'red')
 
-# This is the code that will check the wordlist file for relevant words to use
-cprint("[*] Checking wordlist...[Done]", 'green')
-try:
-        with open(wordlist) as file:
-                to_check = file.read().strip().split('\n')
-                cprint("[*] DONE checking wordlist", 'green')
-                cprint("[*] Total paths to check: %s" %(str(len(to_check))), 'green')
-except IOError: 
-                cprint("[*] Failed to read the specified file...", 'red')
-                sys.exit()
+try: 
+# This code will open the wordlist, red the lines and split them after 11 characters.
+      fo = open(wordlist, "r+")
+      for i in range(14):
+             word = fo.readline(11).strip()
+             surl = url+word+subdir
+             #print(surl)
 
-   
-# This is the core of the directory bursting. It will check for valid paths compared with the wordlist
-#try:
-#def checkpath(path):          
-        #response = requests.get('http://' + rhost + '/' + path).status_code
-response = requests.get('http://' + rhost + '/').status_code
-cprint(response, 'green')
-
-if response == 200:
-        cprint("[*] Beginning scan...", 'green')
-                #for i in range(len(to_check)):
-                        #checkpath(to_check[i])
-        cprint("[*] Valid path found: %s", 'green')
-        cprint("[*] Success! Scan Complete!", 'green')
-#except Exception:
-        #cprint("[*] An unexpected error occurred..", 'red')
+             # This code will return all the subdirectories or the file extensions, depending on what the user selected.
+             # The code will only run if the response code is 200, else it will print not found and the status code
+             # The status code is 200 when Found, and 404 when Not found
+             response = requests.get(surl)
+             #print(response)
+      if (response.status_code == 200):
+             cprint("[+] Found :- " + surl, 'green')
+             write(word)
+      else:
+             cprint("[-] Not found :- " + surl, 'red')
+             pass
+except TimeoutError:
+       cprint("Sorry. The session timed out....", 'red')
