@@ -41,12 +41,19 @@ def crackHash_md5(inputHash):
             encPass = password.encode("utf-8") # This code is hashing the plain text passwords
             wordlistHash = hashlib.md5(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
+
+            fdw = open("password_hashes.txt", "+a")
+            fdw.write("\n")
+            fdw.write("MD5 hash: ")
+            fdw.write(wordlistHash + '\n')
             if wordlistHash != inputHash:
                 # This code will only run when the input hash is not the same as one of the wordlist hashes
                 cprint("FAIL!! Wrong combination: " + password, 'red')
+                
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+                
     except KeyboardInterrupt:
         cprint('Quitting! THe program was terminated by the user', 'red')
     except:
@@ -78,12 +85,19 @@ def crackHash_sha256(inputHash):
             encPass = password.encode("utf-8") # This code is hashing the plain text passwords
             wordlistHash = hashlib.sha256(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
+
+            fdw = open("password_hashes.txt", "+a")
+            fdw.write("\n")
+            fdw.write("SHA256 hash: ")
+            fdw.write(wordlistHash + '\n')
             if wordlistHash != inputHash:
                 # This code will only run when the input hash is not the same as one of the wordlist hashes
                 cprint("FAIL!! Wrong combination: " + password, 'red')
+    
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+                
     except KeyboardInterrupt:
         cprint('Quitting! THe program was terminated by the user', 'red')
     except:
@@ -108,20 +122,7 @@ def crackHash_sha512(inputHash):
         passFile = open("wordlist.txt", "r")
     except FileNotFoundError:
         print("Could not find file")
-    try: 
-        with open("wordlist.txt", "r") as f:
-            passFile = f.read().splitlines()
-            for password in passFile:
-                encPass = password.encode("utf-8")
-                wordlistHash = hashlib.sha512(encPass.strip()).hexdigest()
-                print(encPass.hexdigest())
-                with open("512hash.txt", "r+") as f:
-                    hashFile = f.read().splitlines()
-                    writeHash = f.write(wordlistHash)
-                    for line in hashFile:
-                        f.writelines(writeHash)
-
-                cprint("List hash : " + wordlistHash, 'white')
+    try:    
         for password in passFile:
             encHash = hash.encode("utf-8") # This line hashes what the user inputed
             inputHash = hashlib.sha512(encHash.strip()).hexdigest() # Here a digest for the input string is created
@@ -129,6 +130,11 @@ def crackHash_sha512(inputHash):
             encPass = password.encode("utf-8") # This code is hashing the plain text passwords
             wordlistHash = hashlib.sha512(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
+
+            fdw = open("password_hashes.txt", "+a")
+            fdw.write("\n")
+            fdw.write("SHA 512 hash: ")
+            fdw.write(wordlistHash + '\n')
     
             if wordlistHash != inputHash:
                 # This code will only run when the input hash is not the same as one of the wordlist hashes
@@ -136,6 +142,7 @@ def crackHash_sha512(inputHash):
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+              
                                        
     except FileNotFoundError:
         print("Sorry, the file does not exist...", 'red')
@@ -143,8 +150,8 @@ def crackHash_sha512(inputHash):
         print("Cannot create a new file, because it already exists..", 'red')
     except KeyboardInterrupt:
         cprint('Quitting! THe program was terminated by the user', 'red')
-    #except:
-        #cprint('OOOPS, there was an error. Please try again...', 'red')
+    except:
+        cprint('OOOPS, there was an error. Please try again...', 'red')
 
 
 # This line is calling the crackHash function. The code will not run if this is removed.
