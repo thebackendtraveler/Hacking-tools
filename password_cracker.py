@@ -51,6 +51,7 @@ def crackHash_md5(inputHash):
         cprint('OOOPS, there was an error. Please try again...', 'red')
 
 # This line is calling the crackHash function. The code will not run if this is removed.
+# The hash here acts as a placeholder, and ti makes sure the input is correct
 if __name__ == '__main__':
     crackHash_md5("d3eb05a3d5bb7e4901f739286ba8eee9")
 
@@ -87,6 +88,7 @@ def crackHash_sha256(inputHash):
         cprint('OOOPS, there was an error. Please try again...', 'red')
 
 # This line is calling the crackHash function. The code will not run if this is removed.
+# The hash here is a placeholder, and it makes sure the input is a 256 hash
 if __name__ == '__main__':
     crackHash_sha256("da088df0c22020eda7fef865007b2465bd6ed0fb8a47bdf10a75470ecca4559d")
 
@@ -117,6 +119,15 @@ def crackHash_sha512(inputHash):
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+
+            # Here we ask the user if they want to save the results ion a text file
+            input("Do you want to save the results to a file?: ")
+            if input == "yes":
+                with open('pcrack512_result.txt', 'w') as f:
+                    #f.write(wordlistHash,inputHash,password)
+                    f.write("The hashes found are: " + wordlistHash)
+                    f.write("The input hashes are: " + inputHash)
+                    f.write("The passwords in file is: " + password)
     except KeyboardInterrupt:
         cprint('Quitting! THe program was terminated by the user', 'red')
     except:
@@ -124,9 +135,10 @@ def crackHash_sha512(inputHash):
 
 
 # This line is calling the crackHash function. The code will not run if this is removed.
+# The hash here is a placeholder, and it makes sure the input for the program is a 512 hash
 if __name__ == '__main__':
     crackHash_sha512("acb70dbd1969d70601892f3dd668919cfd2398fd440aaf8c6157620df352843ce5bd9d9dc3f167e6993b90a0d28f1015eb820e99a0625a2923376a71f4944925")
+
+
     
-#with open('passwordcrack_result.txt', 'w') as f:
-    #f.write('readme')
         
