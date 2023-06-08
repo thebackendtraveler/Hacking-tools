@@ -53,6 +53,7 @@ def crackHash_md5(inputHash):
 if __name__ == '__main__':
     crackHash_md5("d3eb05a3d5bb7e4901f739286ba8eee9")
 
+cprint("SHA256 cracking is starting...", 'green')
 def crackHash_sha256(inputHash):
     """
     This function will hash the user input, 
@@ -87,7 +88,7 @@ def crackHash_sha256(inputHash):
 if __name__ == '__main__':
     crackHash_sha256("da088df0c22020eda7fef865007b2465bd6ed0fb8a47bdf10a75470ecca4559d")
 
-
+cprint("SHA512 cracking is starting...", 'green')
 def crackHash_sha512(inputHash):
     """
     This function will hash the user input, 
