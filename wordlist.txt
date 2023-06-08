@@ -2,4 +2,3 @@ ilovecoffee
 crackme
 manchesterunited
 tryhackme
-iamafirewall

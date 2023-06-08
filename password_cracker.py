@@ -13,6 +13,8 @@ cprint(banner, 'blue')
 # For this tool the wordlist is called wordlist.txt
 hash = input("Enter a string to hash: ")
 
+
+
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
 cprint("Cracking password " + hash, 'blue')
@@ -92,6 +94,7 @@ def crackHash_sha256(inputHash):
 if __name__ == '__main__':
     crackHash_sha256("da088df0c22020eda7fef865007b2465bd6ed0fb8a47bdf10a75470ecca4559d")
 
+
 print("\n")
 cprint("SHA512 cracking is starting...", 'green')
 def crackHash_sha512(inputHash):
@@ -105,7 +108,20 @@ def crackHash_sha512(inputHash):
         passFile = open("wordlist.txt", "r")
     except FileNotFoundError:
         print("Could not find file")
-    try:    
+    try: 
+        with open("wordlist.txt", "r") as f:
+            passFile = f.read().splitlines()
+            for password in passFile:
+                encPass = password.encode("utf-8")
+                wordlistHash = hashlib.sha512(encPass.strip()).hexdigest()
+                print(encPass.hexdigest())
+                with open("512hash.txt", "r+") as f:
+                    hashFile = f.read().splitlines()
+                    writeHash = f.write(wordlistHash)
+                    for line in hashFile:
+                        f.writelines(writeHash)
+
+                cprint("List hash : " + wordlistHash, 'white')
         for password in passFile:
             encHash = hash.encode("utf-8") # This line hashes what the user inputed
             inputHash = hashlib.sha512(encHash.strip()).hexdigest() # Here a digest for the input string is created
@@ -113,25 +129,22 @@ def crackHash_sha512(inputHash):
             encPass = password.encode("utf-8") # This code is hashing the plain text passwords
             wordlistHash = hashlib.sha512(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
+    
             if wordlistHash != inputHash:
                 # This code will only run when the input hash is not the same as one of the wordlist hashes
                 cprint("FAIL!! Wrong combination: " + password, 'red')
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
-
-            # Here we ask the user if they want to save the results ion a text file
-            input("Do you want to save the results to a file?: ")
-            if input == "yes":
-                with open('pcrack512_result.txt', 'w') as f:
-                    #f.write(wordlistHash,inputHash,password)
-                    f.write("The hashes found are: " + wordlistHash)
-                    f.write("The input hashes are: " + inputHash)
-                    f.write("The passwords in file is: " + password)
+                                       
+    except FileNotFoundError:
+        print("Sorry, the file does not exist...", 'red')
+    except FileExistsError:
+        print("Cannot create a new file, because it already exists..", 'red')
     except KeyboardInterrupt:
         cprint('Quitting! THe program was terminated by the user', 'red')
-    except:
-        cprint('OOOPS, there was an error. Please try again...', 'red')
+    #except:
+        #cprint('OOOPS, there was an error. Please try again...', 'red')
 
 
 # This line is calling the crackHash function. The code will not run if this is removed.
