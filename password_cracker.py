@@ -44,6 +44,8 @@ def crackHash_md5(inputHash):
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+    except KeyboardInterrupt:
+        cprint('Quitting! THe program was terminated by the user', 'red')
     except:
         cprint('OOOPS, there was an error. Please try again...', 'red')
 
@@ -76,6 +78,8 @@ def crackHash_sha256(inputHash):
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+    except KeyboardInterrupt:
+        cprint('Quitting! THe program was terminated by the user', 'red')
     except:
         cprint('OOOPS, there was an error. Please try again...', 'red')
 
@@ -109,8 +113,11 @@ def crackHash_sha512(inputHash):
             if wordlistHash == inputHash:
                 # This code runs when the input hash is the same as one of the wordlist hashes
                 cprint("SUCCESS!! Password Found: " + password, 'green')
+    except KeyboardInterrupt:
+        cprint('Quitting! THe program was terminated by the user', 'red')
     except:
         cprint('OOOPS, there was an error. Please try again...', 'red')
+
 
 # This line is calling the crackHash function. The code will not run if this is removed.
 if __name__ == '__main__':
