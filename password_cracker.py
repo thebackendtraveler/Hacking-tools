@@ -3,37 +3,32 @@ import hashlib
 import pyfiglet
 from datetime import datetime
 
-# The password cracker starts
-# User interface
+# Basic user interface
 banner = pyfiglet.figlet_format("RACCOON -> PCRACKER")
 cprint(banner, 'blue')
 
 
-#Asking the user for a string to hash, this will be checked towards the wordlists
-# For this tool the wordlist is called wordlist.txt
+#Asking the user for a string to hash and a wordlist
 hash = input("Enter a password to hash: ")
-wordlist = input("Enter a wordlist you want to use: ")
-
 
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
 cprint("Cracking password " + hash, 'blue')
-cprint("The wordlist is: ", wordlist, 'blue')
 cprint("Password cracking started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
-print("\n")
+print("\n") # Printing an empty line to make the output nicer
+
 cprint("MD5 cracking is starting...", 'green')
 def crackHash_md5(inputHash):
     """
     This function will hash the user input, 
-    open the wordlist.txt and hash the passwords, 
-    and compare it to the user input hash.
+    open the wordlist the user selected and hash the passwords 
+    Next, it will compare the wordlist hashes to the user input hash.
     """
     try:
-        passFile = open(wordlist, "r+").read()
-        password = passFile.splitlines()
-
+        passFile = open("pass_crack.txt", "r+")
+    
     except FileNotFoundError:
         print("Could not find file")
     try:    
@@ -78,7 +73,7 @@ def crackHash_sha256(inputHash):
     It will use the sha256 algortihm.
     """
     try:
-        passFile = open("wordlist.txt", "r")
+        passFile = open("pass_crack.txt", "r+")
     except FileNotFoundError:
         print("Could not find file")
     try:    
@@ -123,7 +118,7 @@ def crackHash_sha512(inputHash):
     It will use the sha512 algorithm.
     """
     try:
-        passFile = open("wordlist.txt", "r")
+        passFile = open("pass_crack.txt", "r+")
     except FileNotFoundError:
         print("Could not find file")
     try:    
