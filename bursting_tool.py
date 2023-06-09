@@ -4,8 +4,6 @@ from termcolor import cprint
 import pyfiglet
 import sys
 import requests
-import random
-import time
 from datetime import datetime
 
 # Basic user interface header
@@ -63,7 +61,6 @@ cprint("Wordfile is " + wordlist, 'blue')
 cprint("Looking for subdirectories.... Search started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
-
 try: 
 # This code will open the wordlist, read the lines and split them after 11 characters.
       fo = open(wordlist, "r+")
@@ -72,9 +69,9 @@ try:
           surl = url+word+subdir
           #print(surl)
 
-          # This code will return all the subdirectories or the file extensions, depending on what the user selected.
-          # The code will only run if the response code is 200, else it will print not found and the status code
-          # The status code is 200 when Found, and 404 when Not found
+          # This code will return all the subdirectories 
+          # The code will only run if the response code is 200, else it will print not found 
+          # 200 means success and 404 means unsuccessful
           response = requests.get(surl)
           print(response)
           if (response.status_code == 200):
@@ -122,8 +119,8 @@ try:
           #print(surl)
 
           # This code will return all the file extensions
-          # The code will only run if the response code is 200, else it will print not found and the status code
-          # The status code is 200 when Found, and 404 when Not found
+          # The code will only run if the response code is 200, else it will print not found 
+          # 200 = success, and 404 != success
           response = requests.get(surl)
           #print(response)
           if (response.status_code == 200):
