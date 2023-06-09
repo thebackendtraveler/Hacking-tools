@@ -16,6 +16,7 @@ wordlist = input("Enter a wordlist to use: ")
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
 cprint("Cracking password " + hash, 'blue')
+cprint("The wordlist is:  " + wordlist, 'blue')
 cprint("Password cracking started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
@@ -36,13 +37,13 @@ try:
 
         for password in passFile:
             encHash = hash.encode("utf-8") # This line hashes what the user inputed
-            inputHash = hashlib.md5(encHash.strip()).hexdigest() # Here a digest for the input string is created
-            encPass = password.encode("utf-8") # This code is hashing the plain text passwords
-            wordlistHash = hashlib.md5(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
+            inputHash = hashlib.md5(encHash.strip()).hexdigest() # A digest for the input string is created
+            encPass = password.encode("utf-8") # This code is hashing the wordlist passwords
+            wordlistHash = hashlib.md5(encPass.strip()).hexdigest() # The program is using  md5 
 
             fdw = open("pcrack_results.txt", "+a") # Here the program is opening a file in +a mode
             fdw.write("\n")
-            fdw.write("Valid MD5 hash: ") # Then the program writes the results of the cracking
+            fdw.write("Valid MD5 hash: ") # Then the program writes the results of the cracking to the file
             fdw.write(wordlistHash + '\n')
             fdw.close() # Then the file is closed
      
@@ -55,7 +56,7 @@ try:
                  cprint("Input hash: " + inputHash, 'white')
                  cprint("List hash : " + wordlistHash, 'white')
                  cprint("FAIL!! Password Not Found: " + password, 'red')
-                 # If the hashes do not match, the program continues but does not print anything to the user
+                 # If the hashes are not the same, the program prints that to the user, and continues
                  pass
     
     # This line is calling the crackHash_md5 function. The code will not run if this is removed.
@@ -81,7 +82,7 @@ except ValueError:
 
 print("\n")
 
-#Asking the user for a string to hash and a wordlist
+#Asking the user for a string to hash 
 hash = input("Enter a password to hash: ")
 print("\n")
 
@@ -122,7 +123,7 @@ try:
                  cprint("Input hash: " + inputHash, 'white')
                  cprint("List hash : " + wordlistHash, 'white')
                  cprint("FAIL!! Password Not Found: " + password, 'red')
-                 # If the hashes do not match, the program continues but does not print anything to the user
+                 # If the hashes are not the same, the program prints that to the user, and continues
                  pass
                 
     # This line is calling the crackHash function. The code will not run if this is removed.
@@ -143,7 +144,7 @@ except FileExistsError:
 
 print("\n")
 
-#Asking the user for a string to hash and a wordlist
+#Asking the user for a string to hash 
 hash = input("Enter a password to hash: ")
 print("\n")
 
@@ -155,7 +156,7 @@ try:
             This function will hash the user input, 
             open the wordlist.txt and hash the passwords, 
             and compare it to the user input hash. 
-            It will use the sha512 algorithm.
+            This function will use the sha512 algorithm.
         """
  
         passFile = open(wordlist, "r")
@@ -169,9 +170,9 @@ try:
             wordlistHash = hashlib.sha512(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             #cprint("List hash : " + wordlistHash, 'white')
 
-            fdw = open("pcrack_results.txt", "+a")
+            fdw = open("pcrack_results.txt", "+a") # The file is opened in +a to append more lines
             fdw.write("\n")
-            fdw.write("Valid SHA 512 hash: ")
+            fdw.write("Valid SHA 512 hash: ") # Then the program writes the results to a file
             fdw.write(wordlistHash + '\n')
     
             if wordlistHash == inputHash:
@@ -183,7 +184,7 @@ try:
                  cprint("Input hash: " + inputHash, 'white')
                  cprint("List hash : " + wordlistHash, 'white')
                  cprint("FAIL!! Password Not Found: " + password, 'red')
-                 # If the hashes are not the same, the program continues but it does not print anything to the user
+                 # If the hashes are not the same, the program prints that to the user, and continues
                  pass
    
     # This line is calling the crackHash function. The code will not run if this is removed.
