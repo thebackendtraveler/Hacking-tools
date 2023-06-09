@@ -11,13 +11,14 @@ cprint(banner, 'blue')
 
 #Asking the user for a string to hash, this will be checked towards the wordlists
 # For this tool the wordlist is called wordlist.txt
-hash = input("Enter a string to hash: ")
-
+hash = input("Enter a password to hash: ")
+wordlist = input("Enter a wordlist you want to use: ")
 
 
 #The banner with information about when the cracking starts + the hash to be cracked
 cprint("_" * 50, 'blue')
 cprint("Cracking password " + hash, 'blue')
+cprint("The wordlist is: ", wordlist, 'blue')
 cprint("Password cracking started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
@@ -30,7 +31,9 @@ def crackHash_md5(inputHash):
     and compare it to the user input hash.
     """
     try:
-        passFile = open("wordlist.txt", "r")
+        passFile = open(wordlist, "r+").read()
+        password = passFile.splitlines()
+
     except FileNotFoundError:
         print("Could not find file")
     try:    
@@ -42,10 +45,11 @@ def crackHash_md5(inputHash):
             wordlistHash = hashlib.md5(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
 
-            fdw = open("password_hashes.txt", "+a")
+            fdw = open("pcrack_results.txt", "+a")
             fdw.write("\n")
             fdw.write("MD5 hash: ")
             fdw.write(wordlistHash + '\n')
+
             if wordlistHash != inputHash:
                 # This code will only run when the input hash is not the same as one of the wordlist hashes
                 cprint("FAIL!! Wrong combination: " + password, 'red')
@@ -86,7 +90,7 @@ def crackHash_sha256(inputHash):
             wordlistHash = hashlib.sha256(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
 
-            fdw = open("password_hashes.txt", "+a")
+            fdw = open("pcrack_results.txt", "+a")
             fdw.write("\n")
             fdw.write("SHA256 hash: ")
             fdw.write(wordlistHash + '\n')
@@ -131,7 +135,7 @@ def crackHash_sha512(inputHash):
             wordlistHash = hashlib.sha512(encPass.strip()).hexdigest() # We are using the md5 hashing algorithm
             cprint("List hash : " + wordlistHash, 'white')
 
-            fdw = open("password_hashes.txt", "+a")
+            fdw = open("pcrack_results.txt", "+a")
             fdw.write("\n")
             fdw.write("SHA 512 hash: ")
             fdw.write(wordlistHash + '\n')

@@ -18,7 +18,7 @@ username = input("What username do you want to try? (ex admin): ")
 # if the password is not found, it will be printed as 'attempt failed' in red
 try:
     password_file = input("Please enter the name of the password file: ")
-    file = open(password_file, "r")
+    file = open(password_file, "r").read()
 except FileNotFoundError:
     cprint("The file was not found...", 'red')
 

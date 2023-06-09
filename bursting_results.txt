@@ -1,0 +1,7 @@
+A valid subdomain is: http://www.google.com
+
+A valid subdomain is: http://mail.google.com
+
+A valid subdomain is: http://gmail.google.com
+
+A valid subdomain is: http://search.google.com
