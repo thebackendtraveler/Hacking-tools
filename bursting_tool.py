@@ -28,8 +28,9 @@ try:
             url_to_check = f"http://{sub}." + url
           
             response = requests.get(url_to_check)
-            print(response)
+           
             if (response.status_code == 200):
+                  print(response)
                   cprint("Valid subdomain Found : " + url_to_check, 'green')
                   fdw = open("bursting_results.txt", "+a")
                   fdw.write("\n")
@@ -49,6 +50,7 @@ except FileNotFoundError:
 except requests.ConnectionError:
       pass
 
+print("\n")
 
 url = input("What URL do you want to check?: ")
 wordlist = input("What wordlist do you want to use?: ")
@@ -73,15 +75,15 @@ try:
           # The code will only run if the response code is 200, else it will print not found 
           # 200 means success and 404 means unsuccessful
           response = requests.get(surl)
-          print(response)
+         
           if (response.status_code == 200):
+              print(response)
               cprint("Subdirectory Found : " + surl, 'green')
               fdw = open("bursting_results.txt", "+a")
               fdw.write("\n")
               fdw.write("A valid subdirectory is: ")
               fdw.write(surl + '\n')
           else:
-              cprint("Subdirectory not found : " + surl, 'red')
               pass
 except KeyboardInterrupt:
        cprint("Quitting! The program was interrupted by the user.", 'red')
@@ -107,7 +109,8 @@ ext = input("What extension do you want to look for?: ")
 cprint("_" * 50, 'blue')
 cprint("URL is " + url, 'blue')
 cprint("Wordfile is " + wordlist, 'blue')
-cprint("Directory bursting (file extensions) started at: " + str(datetime.now()), 'blue')
+cprint("File extension is " + ext, 'blue')
+cprint("Looking for file extensions.... Search started at: " + str(datetime.now()), 'blue')
 cprint("_" * 50, 'blue')
 
 try: 
@@ -116,21 +119,22 @@ try:
       for i in range(8):
           word = fo.readline(20).strip()
           surl = url+word+ext
+          extension = word+ext
           #print(surl)
 
           # This code will return all the file extensions
           # The code will only run if the response code is 200, else it will print not found 
           # 200 = success, and 404 != success
           response = requests.get(surl)
-          #print(response)
+          
           if (response.status_code == 200):
+              print(response)
               cprint("File-extension Found : " + surl, 'green')
               fdw = open("bursting_results.txt", "+a")
               fdw.write("\n")
               fdw.write("A valid file-extension is: ")
-              fdw.write(surl + url ,'\n')
+              fdw.write(extension + '\n')
           else:
-              cprint("File-extension Not found : " + surl, 'red')
               pass
 except KeyboardInterrupt:
        cprint("Quitting! The program was interrupted by the user.", 'red')
@@ -141,6 +145,9 @@ except FileExistsError:
        cprint("This file already exists!", 'red')
 except FileNotFoundError: 
        cprint("Sorry, this file does not exist!", 'red')
+except TypeError: 
+       cprint("Sorry... There was a type error. Try again")
+      
 
 
 
