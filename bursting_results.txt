@@ -19,3 +19,25 @@ A valid subdirectory is: http://192.168.142.138/mutillidae/
 A valid file-extension is: readme.txt
 
 A valid file-extension is: license.txt
+
+A valid subdomain is: http://www.google.com
+
+A valid subdomain is: http://mail.google.com
+
+A valid subdomain is: http://gmail.google.com
+
+A valid subdomain is: http://search.google.com
+
+A valid subdirectory is: http://192.168.142.138/dvwa/
+
+A valid subdirectory is: http://192.168.142.138/twiki/
+
+A valid subdirectory is: http://192.168.142.138/phpMyAdmin/
+
+A valid subdirectory is: http://192.168.142.138/dav/
+
+A valid subdirectory is: http://192.168.142.138/mutillidae/
+
+A valid file-extension is: readme.txt
+
+A valid file-extension is: license.txt
